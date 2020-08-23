@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome",
+      "url": "http://localhost:5000/Samples/TypeScript/Demo/",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./*": "${workspaceFolder}/Samples/TypeScript/Demo/*",
+        "webpack:///${workspaceFolder}/Framework/*": "${workspaceFolder}/Framework/*",
+      },
+      "trace": true
+    }
+  ]
+}
