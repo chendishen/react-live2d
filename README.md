@@ -11,20 +11,22 @@
 
 ## 目录说明
 
+```
+·
+├─ Core                         # Cubism Core 核心库
 
-├─ Core                         # Cubism Core 核心库
-
-└─ Samples                      # 示例项目
+└─ Samples                      
 
    └─ TypeScript
 
-      └─ Demo                   # 直接在此处npm install后 npm run build:prod得到打包的bundle.js，按照index.html的引入方式引入到项目即可
+      └─ Demo                   # 项目目录
 
-         └─ Resources           # 这里面放的是live2D的模型及动作导出的文件，需要添加自定义模型，请在此处添加，注意文件夹名字即为模型名字
+         └─ Resources           # 这里面放的是live2D的模型及动作导出的文件
 
          └─ Framework           # 包含渲染和动画功能等的源代码的目录
 
          └─ src                 # 核心代码
+```
 
 ## 📦 Install
 
