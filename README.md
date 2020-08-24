@@ -55,11 +55,14 @@ const App = () => (
 
 比如你想要给页面加入模型Hiyori，那就在你的react项目中的public目录下，将Hiyori放入Resources资源文件夹,如
 
-└─ public                     
+```
+·
+└─ public                     
 
    └─ Resources
 
        └─ Hiyori
+```
 
 api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/chendishen/Live2DBase/issues)）
 
