@@ -30,8 +30,8 @@
 ```
 
 ## 🖥 Environment Support
-| ----- | Windows | macOS | Linux | Android | iOS |
-| ----- | ----- | ----- | ----- | ----- | ----- |
+|  | Windows | macOS | Linux | Android | iOS |
+| ----- | :-----: | :-----: | :-----: | :-----: | :-----: |
 | Google Chrome | ✔ | ✔ | ✔ | ✔ | ✔ |
 | Firefox | ✔ | ✔ | ✔ | ✔ | ✔ |
 | Safari | - | ✔ | - | - | ✔ |
@@ -80,7 +80,7 @@ const App = () => (
 api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/chendishen/Live2DBase/issues)）
 
 | 成员 | 说明 | 类型 | 默认值 |
-| ----- | ----- | ----- | ----- |
+| :-----: | ----- | ----- | ----- |
 | width | 盒子宽度 | Number | 300 |
 | height | 盒子高度 | Number | 400 |
 | top | position：relative的top值 | String | '' |
