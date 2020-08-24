@@ -31,7 +31,7 @@
 
 ## 📦 Install
 
-为了不增加npm包的负担，基础包还是直接使用script引入，在你个人的react项目的->public->index.html先插入
+为了不增加npm包的负担，基础包还是直接使用script引入，在你个人的react项目的->public->index.html先插入，Core里可获得该min.js
 ```
 <script src = "http://publicjs.supmiao.com/live2dcubismcore.min.js"></script>
 ```
@@ -66,6 +66,7 @@ const App = () => (
 
        └─ Hiyori
 ```
+更多模型，请动手在github搜索'live2d 模型'即可，模型大多有版权，请慎勿用于商业~
 
 api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/chendishen/Live2DBase/issues)）
 
