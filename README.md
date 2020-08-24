@@ -29,6 +29,15 @@
          └─ src                 # 核心代码
 ```
 
+## 🖥 Environment Support
+| ----- | Windows | macOS | Linux | Android | iOS |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| Google Chrome | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Firefox | ✔ | ✔ | ✔ | ✔ | ✔ |
+| Safari | - | ✔ | - | - | ✔ |
+| Microsoft Edge | ✔ | ✔ | - | ✔ | ✔ |
+| Internet Explorer 11 | ✔ | - | - | - | - |
+
 ## 📦 Install
 
 为了不增加npm包的负担，基础包还是直接使用script引入，在你个人的react项目的->public->index.html先插入，Core里可获得该min.js
