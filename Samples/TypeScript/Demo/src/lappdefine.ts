@@ -49,6 +49,10 @@ export const MotionGroupTapBody = 'TapBody'; // 体をタップしたとき
 export const HitAreaNameHead = 'Head';
 export const HitAreaNameBody = 'Body';
 
+// 对话内容
+export let HitBodyList: string[] = ['啊呀，你的手在摸哪里嘛~','哼，坏人'];
+export let HitHeadList: string[] = ['讨厌~不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'];
+
 // モーションの優先度定数
 export const PriorityNone = 0;
 export const PriorityIdle = 1;
@@ -70,5 +74,11 @@ export const RenderTargetHeight = 1000;
 export class lappdefineSet {
     public static setModelDir(modelDir:Array<string>): void {
         ModelDir = modelDir.length>0 ? modelDir : ModelDir
+    }
+    public static setHitBody(hitBodyList:Array<string>): void {
+        HitBodyList = hitBodyList.length>0 ? hitBodyList : HitBodyList
+    }
+    public static setHitHead(hitHeadList:Array<string>): void {
+        HitHeadList = hitHeadList.length>0 ? hitHeadList : HitHeadList
     }
 }

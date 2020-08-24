@@ -19,6 +19,8 @@ import * as LAppDefine from './lappdefine';
 
 export let s_instance: LAppLive2DManager = null;
 
+let timer = null;
+
 /**
  * サンプルアプリケーションにおいてCubismModelを管理するクラス
  * モデル生成と破棄、タップイベントの処理、モデル切り替えを行う。
@@ -112,6 +114,7 @@ export class LAppLive2DManager {
           LAppPal.printMessage(
             `[APP]hit area: [${LAppDefine.HitAreaNameHead}]`
           );
+          this.talkPrint(LAppDefine.HitHeadList[Math.floor(Math.random()*LAppDefine.HitHeadList.length)])
         }
         this._models.at(i).setRandomExpression();
       } else if (this._models.at(i).hitTest(LAppDefine.HitAreaNameBody, x, y)) {
@@ -119,6 +122,7 @@ export class LAppLive2DManager {
           LAppPal.printMessage(
             `[APP]hit area: [${LAppDefine.HitAreaNameBody}]`
           );
+          this.talkPrint(LAppDefine.HitBodyList[Math.floor(Math.random()*LAppDefine.HitBodyList.length)])
         }
         this._models
           .at(i)
@@ -129,6 +133,18 @@ export class LAppLive2DManager {
           );
       }
     }
+  }
+
+  // 页面属性变化
+  public talkPrint(print:string): void {
+    clearTimeout(timer);
+    let printNow = document.getElementById('live2d-print');
+    printNow.innerHTML = print;
+    printNow.style.display = 'block';
+    timer = setTimeout(() => {
+      printNow.innerHTML = '';
+      printNow.style.display = 'none';
+    }, 2000);
   }
 
   /**
@@ -183,8 +199,6 @@ export class LAppLive2DManager {
     // ディレクトリ名とmodel3.jsonの名前を一致させておくこと。
     const model: string = LAppDefine.ModelDir[index];
     const modelPath: string = LAppDefine.ResourcesPath + model + '/';
-    console.log("LAppDefine.ResourcesPath",LAppDefine.ResourcesPath)
-    console.log("model",model)
     let modelJsonName: string = LAppDefine.ModelDir[index];
     modelJsonName += '.model3.json';
 
@@ -209,6 +223,5 @@ export class LAppLive2DManager {
   // モーション再生終了のコールバック関数
   _finishedMotion = (self: ACubismMotion): void => {
     LAppPal.printMessage('Motion Finished:');
-    console.log(self);
   };
 }

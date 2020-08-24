@@ -95,6 +95,7 @@ export class LAppDelegate {
     //监听cavas的鼠标点击事件,如果你希望在鼠标点击页面元素后
     //看板娘不在看向鼠标，直到你再次移动鼠标，把监听事件对象从canvas换成document
     canvas.addEventListener("click", function (e) {
+      console.log(e)
       if (!LAppDelegate.getInstance()._view) {
         LAppPal.printMessage("view notfound");
         return;
