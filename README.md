@@ -84,14 +84,14 @@ api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/
 | 成员 | 说明 | 类型 | 默认值 |
 | :-----: | ----- | ----- | ----- |
 | width | 盒子宽度 | Number | 300 |
-| height | 盒子高度 | Number | 400 |
+| height | 盒子高度 | Number | 500 |
 | top | position：relative的top值 | String | '' |
 | right | position：relative的right值 | String | '0' |
 | bottom | position：relative的bottom值 | String | '0' |
 | left | position：relative的left值 | String | '' |
 | ModelList | 模型列表，暂时只展示数组的第一个模型 | Array<String> | ['Hiyori'] |
 | TouchBody | 点击身体时聊天框随机出现数组的值 | Array<String> | ['啊呀，你的手在摸哪里嘛~','哼，坏人'] |
-| TouchHead | 点击头部时聊天框随机出现数组的值 | Array<String> | ['讨厌~不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
+| TouchHead | 点击头部时聊天框随机出现数组的值,该值当模型未存入头部事件时无效 | Array<String> | ['讨厌~不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
 | color | 聊天框背景颜色 | String | '#C8E6FE' |
 
 
