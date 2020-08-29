@@ -4,3 +4,5 @@ example
 .babelrc
 .gitignore
 webpack.config.js
+/Framework
+/Resources

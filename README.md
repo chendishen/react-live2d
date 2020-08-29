@@ -52,7 +52,8 @@ npm install react-live2d
 ```
 
 
-## 🔨 Usage
+## 🔨 Usage for SPA
+#####  如：create-react-app
 
 ```jsx
 import ReactLive2d from 'react-live2d';
@@ -77,6 +78,74 @@ const App = () => (
 
        └─ Hiyori
 ```
+
+
+## 🔨 Usage for SSR
+#####  如：create-next-app
+
+项目根目录创建components文件夹，并在其中创建Header.js
+```jsx
+import React from 'react'
+import Head from 'next/head'
+
+const Header = () => (
+  <div className="header">
+    <Head>
+    <title></title>
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script>
+        {
+        `             
+    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://publicjs.supmiao.com/live2dcubismcore.min.js'];
+    `
+        }
+    
+    </script>
+    </Head>
+ </div>
+)
+
+export default Header
+```
+
+```jsx
+import dynamic from 'next/dynamic'
+
+
+const DynamicComponentWithNoSSR = dynamic(import('../components/Header'), {
+  ssr: false
+})
+
+const ReactLive2d = dynamic(import('react-live2d'), {
+  ssr: false
+})
+
+export default function Home() (
+  <>
+    <DynamicComponentWithNoSSR></DynamicComponentWithNoSSR>
+    <ReactLive2d
+      width = { 300}
+      height = { 500}
+      bottom = { '10px'}
+      right = { '10px'}
+      ModelList = { ['Haru']}
+      TouchBody = { ['啊啊啊啊啊你要干嘛', '哼', '坏人']}
+      PathFull='http://publicjs.supmiao.com/Resources/'
+    />
+  </>
+);
+```
+
+SSR使用看板娘需要资源域名，资源域名需要允许跨域，nginx参考配置如下：
+```
+    location / {
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Headers X-Requested-With;
+        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
+    }
+```
+
+
 更多模型，请动手在github搜索'live2d 模型'即可，模型大多有版权，请慎勿用于商业~
 
 api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/chendishen/Live2DBase/issues)）
@@ -93,5 +162,6 @@ api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/
 | TouchBody | 点击身体时聊天框随机出现数组的值 | Array<String> | ['啊呀，你的手在摸哪里嘛~','哼，坏人'] |
 | TouchHead | 点击头部时聊天框随机出现数组的值,该值当模型未存入头部事件时无效 | Array<String> | ['讨厌,不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
 | color | 聊天框背景颜色 | String | '#C8E6FE' |
+| PathFull | 当SSR框架时，必须传入此参数，用以额外指定绝对路径资源域名地址 | String | '' |
 
 

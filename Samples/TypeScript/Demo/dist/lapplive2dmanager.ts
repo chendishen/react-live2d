@@ -197,6 +197,8 @@ export class LAppLive2DManager {
     // ModelDir[]に保持したディレクトリ名から
     // model3.jsonのパスを決定する。
     // ディレクトリ名とmodel3.jsonの名前を一致させておくこと。
+
+    // SSR服务端渲染的时候，无法正确读取资源。考虑把一个基础模型录入npm包
     const model: string = LAppDefine.ModelDir[index];
     const modelPath: string = LAppDefine.ResourcesPath + model + '/';
     let modelJsonName: string = LAppDefine.ModelDir[index];

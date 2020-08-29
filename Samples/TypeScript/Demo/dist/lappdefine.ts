@@ -23,7 +23,9 @@ export const ViewLogicalMaxBottom = -2.0;
 export const ViewLogicalMaxTop = 2.0;
 
 // 相対パス
-export const ResourcesPath = './Resources/';
+export let ResourcesPath = './Resources/';
+// 绝对路径，提供给SSR类型项目
+// export let ResourcesPathFull = '';
 
 // モデルの後ろにある背景の画像ファイル
 export const BackImageName = 'back_class_normal.png';
@@ -72,13 +74,20 @@ export const RenderTargetHeight = 1000;
 
 // 外部传入动态参数
 export class lappdefineSet {
+    // 模型列表
     public static setModelDir(modelDir:Array<string>): void {
         ModelDir = modelDir.length>0 ? modelDir : ModelDir
     }
+    // 身体点击语言
     public static setHitBody(hitBodyList:Array<string>): void {
         HitBodyList = hitBodyList.length>0 ? hitBodyList : HitBodyList
     }
+    // 头部点击语言
     public static setHitHead(hitHeadList:Array<string>): void {
         HitHeadList = hitHeadList.length>0 ? hitHeadList : HitHeadList
+    }
+    // 模型绝对路径
+    public static setPathFull(pathfull:string): void {
+        ResourcesPath = pathfull.length>0 ? pathfull : ResourcesPath
     }
 }

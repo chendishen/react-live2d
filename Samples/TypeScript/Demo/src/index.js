@@ -29,7 +29,7 @@ function ReactLive2d(props) {
     let printStyle = {
         position: 'absolute',
         width: props.width > 300 ? props.width/2 : '150px',
-        left: props.width > 300 ? (props.width - props.width/2)/2 : (props.width-150)/2,
+        left: props.width > 300 ? (props.width - props.width/2)/2 + 'px' : (props.width-150)/2 + 'px',
         top: '0',
         minHeight: '20px',
         display: 'block',
@@ -46,6 +46,7 @@ function ReactLive2d(props) {
         props.ModelList ? LAppDefine.lappdefineSet.setModelDir(props.ModelList) : LAppDefine.lappdefineSet.setModelDir([])
         props.TouchBody ? LAppDefine.lappdefineSet.setHitBody(props.TouchBody) : LAppDefine.lappdefineSet.setHitBody([])
         props.TouchHead ? LAppDefine.lappdefineSet.setHitHead(props.TouchHead) : LAppDefine.lappdefineSet.setHitHead([])
+        props.PathFull ? LAppDefine.lappdefineSet.setPathFull(props.PathFull) : LAppDefine.lappdefineSet.setPathFull('')
 
         
         if (LAppDelegate.getInstance().initialize() == false) {

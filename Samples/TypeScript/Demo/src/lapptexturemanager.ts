@@ -113,6 +113,8 @@ export class LAppTextureManager {
       callback(textureInfo);
     };
     img.src = fileName;
+    //  添加允许图片资源跨域请求
+    img.crossOrigin = "anonymous";
   }
 
   /**
