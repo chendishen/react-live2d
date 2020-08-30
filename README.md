@@ -138,11 +138,12 @@ export default function Home() (
 
 SSR使用看板娘需要资源域名，资源域名需要允许跨域，nginx参考配置如下：
 ```
-    location / {
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Headers X-Requested-With;
-        add_header Access-Control-Allow-Methods GET,POST,OPTIONS;
-    }
+server {　　 
+    ....
+    add_header Access-Control-Allow-Origin *;
+    add_header Access-Control-Allow-Methods 'GET,POST';
+    add_header Access-Control-Allow-Headers 'DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';  
+}
 ```
 
 
