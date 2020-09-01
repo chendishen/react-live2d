@@ -9,7 +9,7 @@
 
 ![示例图片](img/example.png)
 
-服务器配置较差，网站首次打开，看板娘需要加载大量模型和动作，请耐心等候
+示例服务器配置较差，网站首次打开，看板娘需要加载较大的皮肤纹理高清图，请耐心等候
 
 
 ## 目录说明
@@ -42,11 +42,6 @@
 
 ## 📦 Install
 
-为了不增加npm包的负担，基础包还是直接使用script引入，在你个人的react项目的->public->index.html先插入，Core里可获得该min.js
-```
-<script src = "http://publicjs.supmiao.com/live2dcubismcore.min.js"></script>
-```
-
 ```bash
 npm install react-live2d
 ```
@@ -54,6 +49,12 @@ npm install react-live2d
 
 ## 🔨 Usage for SPA
 #####  如：create-react-app
+
+
+基础包直接使用script引入，在你个人的react项目的->public->index.html先插入，Core里可获得该min.js
+```
+<script src = "http://publicjs.supmiao.com/live2dcubismcore.min.js"></script>
+```
 
 ```jsx
 import ReactLive2d from 'react-live2d';
@@ -136,7 +137,7 @@ export default function Home() (
 );
 ```
 
-SSR使用看板娘需要资源域名，资源域名需要允许跨域，nginx参考配置如下：
+SSR使用看板娘需要允许跨域的资源域名，nginx参考配置如下：
 ```
 server {　　 
     ....
