@@ -48,15 +48,17 @@ function ReactLive2d(props) {
         props.TouchHead ? LAppDefine.lappdefineSet.setHitHead(props.TouchHead) : LAppDefine.lappdefineSet.setHitHead([])
         props.PathFull ? LAppDefine.lappdefineSet.setPathFull(props.PathFull) : LAppDefine.lappdefineSet.setPathFull('')
 
-        
-        if (LAppDelegate.getInstance().initialize() == false) {
-            return;
+        if (!navigator.userAgent.match(/mobile/i) || props.MobileShow==true) {
+            
+            if (LAppDelegate.getInstance().initialize() == false) {
+                return;
+            }
+    
+            LAppDelegate.getInstance().run();
+    
+    
+            window.onbeforeunload = () => LAppDelegate.releaseInstance();
         }
-
-        LAppDelegate.getInstance().run();
-
-
-        window.onbeforeunload = () => LAppDelegate.releaseInstance();
 
     }, []);
 

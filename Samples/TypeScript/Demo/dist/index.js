@@ -62,15 +62,17 @@ function ReactLive2d(props) {
     props.TouchHead ? LAppDefine.lappdefineSet.setHitHead(props.TouchHead) : LAppDefine.lappdefineSet.setHitHead([]);
     props.PathFull ? LAppDefine.lappdefineSet.setPathFull(props.PathFull) : LAppDefine.lappdefineSet.setPathFull('');
 
-    if (_lappdelegate.LAppDelegate.getInstance().initialize() == false) {
-      return;
+    if (!navigator.userAgent.match(/mobile/i) || props.MobileShow == true) {
+      if (_lappdelegate.LAppDelegate.getInstance().initialize() == false) {
+        return;
+      }
+
+      _lappdelegate.LAppDelegate.getInstance().run();
+
+      window.onbeforeunload = function () {
+        return _lappdelegate.LAppDelegate.releaseInstance();
+      };
     }
-
-    _lappdelegate.LAppDelegate.getInstance().run();
-
-    window.onbeforeunload = function () {
-      return _lappdelegate.LAppDelegate.releaseInstance();
-    };
   }, []);
   return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", {
     style: containerStyle,

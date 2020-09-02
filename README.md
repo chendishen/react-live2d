@@ -172,5 +172,6 @@ api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/
 | TouchHead | 点击头部时聊天框随机出现数组的值,该值当模型未存入头部事件时无效 | Array<String> | ['讨厌,不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
 | color | 聊天框背景颜色 | String | '#C8E6FE' |
 | PathFull | 当SSR框架时，必须传入此参数，用以额外指定绝对路径资源域名地址 | String | '' |
+| MobileShow | 是否在移动设备展示看板娘 | Boolean | false |
 
 
