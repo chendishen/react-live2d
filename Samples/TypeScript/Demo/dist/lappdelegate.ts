@@ -180,7 +180,6 @@ export class LAppDelegate {
    * 実行処理。
    */
   public run(): void {
-    console.log('run')
     // メインループ
     const loop = (): void => {
       // インスタンスの有無の確認
