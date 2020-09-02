@@ -11,9 +11,8 @@ import ReactLive2d from '../../src/index.js';
                 height={500}
                 bottom={'10px'}
                 right={'10px'}
-                ModelList={['Haru']}
+                ModelList={['Hiyori']}
                 TouchBody={['啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊你要干嘛','哼','坏人']}
-                PathFull='http://test2.supmiao.com/Resources/'
              />
         </div>
     )

@@ -1,0 +1,62 @@
+{
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "build": "webpack -d --hide-modules",
+    "build:prod": "webpack -p --hide-modules",
+    "test": "tsc --noEmit",
+    "lint": "eslint src -f codeframe --ext .ts",
+    "lint:fix": "eslint src -f codeframe --ext .ts --fix",
+    "serve": "serve ../../.. -p 5000",
+    "clean": "rimraf dist",
+    "transpile": "babel src -d dist --copy-files",
+    "prepublishOnly": "npm run transpile"
+  },
+  "main": "dist/bundle.js",
+  "name": "react-live2d",
+  "version": "1.0.17",
+  "description": "live2D 看板娘",
+  "author": {
+    "name": "DS",
+    "email": "690630770@qq.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chendishen/react-live2d.git"
+  },
+  "license": "GPL-3.0",
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "@types/node": "^14.6.0",
+    "@types/react": "^16.9.46",
+    "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "babel-loader": "^8.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "html-webpack-plugin": "^4.3.0",
+    "prettier": "^1.19.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "rimraf": "^3.0.1",
+    "serve": "^11.3.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.5",
+    "url-loader": "^4.1.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-merge": "^5.1.2"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.0.0"
+  }
+}

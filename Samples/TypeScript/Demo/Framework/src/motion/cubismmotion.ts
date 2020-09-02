@@ -718,16 +718,17 @@ export namespace Live2DCubismFramework {
             this._motionData.segments.at(
               totalSegmentCount
             ).basePointIndex = totalPointCount;
-
-            this._motionData.points.at(
-              totalPointCount
-            ).time = json.getMotionCurveSegment(curveCount, segmentPosition);
-            this._motionData.points.at(
-              totalPointCount
-            ).value = json.getMotionCurveSegment(
-              curveCount,
-              segmentPosition + 1
-            );
+            if(this._motionData.points.at(totalPointCount)){
+              this._motionData.points.at(
+                totalPointCount
+              ).time = json.getMotionCurveSegment(curveCount, segmentPosition);
+              this._motionData.points.at(
+                totalPointCount
+              ).value = json.getMotionCurveSegment(
+                curveCount,
+                segmentPosition + 1
+              );
+            }
 
             totalPointCount += 1;
             segmentPosition += 2;
@@ -748,18 +749,21 @@ export namespace Live2DCubismFramework {
                 totalSegmentCount
               ).evaluate = linearEvaluate;
 
-              this._motionData.points.at(
-                totalPointCount
-              ).time = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 1
-              );
-              this._motionData.points.at(
-                totalPointCount
-              ).value = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 2
-              );
+              // 修改最后点
+              if(this._motionData.points.at(totalPointCount)){
+                this._motionData.points.at(
+                  totalPointCount
+                ).time = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 1
+                );
+                this._motionData.points.at(
+                  totalPointCount
+                ).value = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 2
+                );
+              }
 
               totalPointCount += 1;
               segmentPosition += 3;
@@ -772,45 +776,55 @@ export namespace Live2DCubismFramework {
               this._motionData.segments.at(
                 totalSegmentCount
               ).evaluate = bezierEvaluate;
-
-              this._motionData.points.at(
-                totalPointCount
-              ).time = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 1
-              );
-              this._motionData.points.at(
-                totalPointCount
-              ).value = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 2
-              );
-
-              this._motionData.points.at(
-                totalPointCount + 1
-              ).time = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 3
-              );
-              this._motionData.points.at(
-                totalPointCount + 1
-              ).value = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 4
-              );
-
-              this._motionData.points.at(
-                totalPointCount + 2
-              ).time = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 5
-              );
-              this._motionData.points.at(
-                totalPointCount + 2
-              ).value = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 6
-              );
+              
+              // 修改最后点
+              if(this._motionData.points.at(totalPointCount)){
+                this._motionData.points.at(
+                  totalPointCount
+                ).time = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 1
+                );
+                this._motionData.points.at(
+                  totalPointCount
+                ).value = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 2
+                );
+              }
+              
+              // 修改最后点
+              if(this._motionData.points.at(totalPointCount + 1)){
+                this._motionData.points.at(
+                  totalPointCount + 1
+                ).time = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 3
+                );
+                this._motionData.points.at(
+                  totalPointCount + 1
+                ).value = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 4
+                );
+              }
+              
+              // 修改最后点
+              if(this._motionData.points.at(totalPointCount + 2)){
+                this._motionData.points.at(
+                  totalPointCount + 2
+                ).time = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 5
+                );
+                this._motionData.points.at(
+                  totalPointCount + 2
+                ).value = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 6
+                );
+              }
+              
 
               totalPointCount += 3;
               segmentPosition += 7;
@@ -825,18 +839,21 @@ export namespace Live2DCubismFramework {
                 totalSegmentCount
               ).evaluate = steppedEvaluate;
 
-              this._motionData.points.at(
-                totalPointCount
-              ).time = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 1
-              );
-              this._motionData.points.at(
-                totalPointCount
-              ).value = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 2
-              );
+              // 修改最后点
+              if(this._motionData.points.at(totalPointCount)){
+                this._motionData.points.at(
+                  totalPointCount
+                ).time = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 1
+                );
+                this._motionData.points.at(
+                  totalPointCount
+                ).value = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 2
+                );
+              }
 
               totalPointCount += 1;
               segmentPosition += 3;
@@ -851,18 +868,21 @@ export namespace Live2DCubismFramework {
                 totalSegmentCount
               ).evaluate = inverseSteppedEvaluate;
 
-              this._motionData.points.at(
-                totalPointCount
-              ).time = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 1
-              );
-              this._motionData.points.at(
-                totalPointCount
-              ).value = json.getMotionCurveSegment(
-                curveCount,
-                segmentPosition + 2
-              );
+              // 修改最后点
+              if(this._motionData.points.at(totalPointCount)){
+                this._motionData.points.at(
+                  totalPointCount
+                ).time = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 1
+                );
+                this._motionData.points.at(
+                  totalPointCount
+                ).value = json.getMotionCurveSegment(
+                  curveCount,
+                  segmentPosition + 2
+                );
+              }
 
               totalPointCount += 1;
               segmentPosition += 3;

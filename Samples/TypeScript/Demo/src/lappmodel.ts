@@ -85,7 +85,7 @@ export class LAppModel extends CubismUserModel {
    * @param fileName
    */
   public loadAssets(dir: string, fileName: string): void {
-    console.log('dir',dir)
+    console.log('资源路径',dir)
     this._modelHomeDir = dir;
     fetch(`${this._modelHomeDir}/${fileName}`)
       .then(response => response.arrayBuffer())
@@ -359,6 +359,7 @@ export class LAppModel extends CubismUserModel {
       }
 
       // モーションの読み込み
+      // 装入动作
       for (let i = 0; i < motionGroupCount; i++) {
         this.preLoadMotionGroup(group[i]);
       }
@@ -398,7 +399,6 @@ export class LAppModel extends CubismUserModel {
       ) {
         // テクスチャ名が空文字だった場合はロード・バインド処理をスキップ
         if (this._modelSetting.getTextureFileName(modelTextureNumber) == '') {
-          console.log('getTextureFileName null');
           continue;
         }
 
@@ -609,7 +609,9 @@ export class LAppModel extends CubismUserModel {
    * @param group モーショングループ名
    * @param priority 優先度
    * @param onFinishedMotionHandler モーション再生終了時に呼び出されるコールバック関数
+   * @param onFinishedMotionHandler 动作再生结束时调用的回呼函数
    * @return 開始したモーションの識別番号を返す。個別のモーションが終了したか否かを判定するisFinished()の引数で使用する。開始できない時は[-1]
+   * @return 返回开始动作的识别号码。用于判定个别动作是否结束的isFinished（）参数。无法开始时[-1]
    */
   public startRandomMotion(
     group: string,
@@ -707,13 +709,15 @@ export class LAppModel extends CubismUserModel {
   /**
    * モーションデータをグループ名から一括でロードする。
    * モーションデータの名前は内部でModelSettingから取得する。
+   * 从组合名称中统一加载动作数据。
+   * 动作数据的名称在内部从ModelSetting取得。
    *
    * @param group モーションデータのグループ名
+   * group动作数据的组名称
    */
   public preLoadMotionGroup(group: string): void {
     for (let i = 0; i < this._modelSetting.getMotionCount(group); i++) {
       const motionFileName = this._modelSetting.getMotionFileName(group, i);
-
       // ex) idle_0
       const name = `${group}_${i}`;
       if (this._debugMode) {

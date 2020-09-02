@@ -335,8 +335,11 @@ export namespace Live2DCubismFramework {
 
     /**
      * モーショングループの名前を取得する
+     * 获取动作组的名称
      * @param index 配列のインデックス値
      * @return モーショングループの名前
+     * @param index 排列的索引值
+     * @return 动作组的名称
      */
     public getMotionGroupName(index: number): string {
       if (!this.isExistMotionGroups()) {

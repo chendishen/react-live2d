@@ -359,7 +359,10 @@ export class LAppModel extends CubismUserModel {
       }
 
       // モーションの読み込み
+      // 装入动作
+      console.log('动作列表',motionGroupCount)
       for (let i = 0; i < motionGroupCount; i++) {
+        console.log('i',group[i])
         this.preLoadMotionGroup(group[i]);
       }
 
@@ -707,8 +710,11 @@ export class LAppModel extends CubismUserModel {
   /**
    * モーションデータをグループ名から一括でロードする。
    * モーションデータの名前は内部でModelSettingから取得する。
+   * 从组合名称中统一加载动作数据。
+   * 动作数据的名称在内部从ModelSetting取得。
    *
    * @param group モーションデータのグループ名
+   * group动作数据的组名称
    */
   public preLoadMotionGroup(group: string): void {
     for (let i = 0; i < this._modelSetting.getMotionCount(group); i++) {

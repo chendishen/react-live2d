@@ -153,8 +153,9 @@ server {　　
 如何辨别是moc3格式模型：
 ![示例图片](img/model.png)
 
+个人用以收集、学习的moc3格式[仓库](https://github.com/chendishen/live2d-model)
 
-更多模型，请动手在github搜索'live2d 模型'即可，模型大多有版权，请慎勿用于商业~
+更多模型，请动手在github搜索'live2d 模型'即可，模型注意版权，请勿用于商业用途~
 
 api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/chendishen/Live2DBase/issues)）
 
