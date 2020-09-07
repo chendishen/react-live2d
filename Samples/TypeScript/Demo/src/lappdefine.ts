@@ -30,7 +30,7 @@ export let ResourcesPath = './Resources/';
 // モデルの後ろにある背景の画像ファイル
 export const BackImageName = 'back_class_normal.png';
 
-// 歯車
+// 切换
 export const GearImageName = 'icon_gear.png';
 
 // 終了ボタン
@@ -41,7 +41,6 @@ export const PowerImageName = 'CloseNormal.png';
 // ディレクトリ名とmodel3.jsonの名前を一致させておくこと
 // export const ModelDir: string[] = ['Haru', 'Hiyori', 'Mark', 'Natori', 'Rice'];
 export let ModelDir: string[] = ['Hiyori', 'Haru', 'Rice'];
-export const ModelDirSize: number = ModelDir.length;
 
 // 外部定義ファイル（json）と合わせる
 export const MotionGroupIdle = 'Idle'; // アイドリング

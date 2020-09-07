@@ -167,11 +167,16 @@ api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/
 | right | position：relative的right值 | String | '0' |
 | bottom | position：relative的bottom值 | String | '0' |
 | left | position：relative的left值 | String | '' |
-| ModelList | 模型列表，暂时只展示数组的第一个模型 | Array<String> | ['Hiyori'] |
+| ModelList | 模型列表 | Array<String> | ['Hiyori'] |
 | TouchBody | 点击身体时聊天框随机出现数组的值 | Array<String> | ['啊呀，你的手在摸哪里嘛~','哼，坏人'] |
 | TouchHead | 点击头部时聊天框随机出现数组的值,该值当模型未存入头部事件时无效 | Array<String> | ['讨厌,不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
 | color | 聊天框背景颜色 | String | '#C8E6FE' |
 | PathFull | 当SSR框架时，必须传入此参数，用以额外指定绝对路径资源域名地址 | String | '' |
 | MobileShow | 是否在移动设备展示看板娘 | Boolean | false |
+| menuList | 启用的功能菜单列表，该值传空数组时不启用菜单，可用参数为：Mtab | Array<String> | ['Mtab'] |
 
 
+当menuList 传入非空数组时，其中的字段：
+| 成员 | 说明 | 类型 | 默认值 |
+| :-----: | ----- | ----- | ----- |
+| Mtab | 切换看板娘 | String | 'Mtab' |

@@ -58,11 +58,16 @@ module.exports = {
         }
       },
       {
-        test:/\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test:/\.(png|jpe?g|gif|svg|ttf|eot|woff|woff2)(\?.*)?$/,
         exclude: /node_modules/,
         use: {
             loader: "url-loader"
         }
+      },
+      {
+        test:/\.css$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },

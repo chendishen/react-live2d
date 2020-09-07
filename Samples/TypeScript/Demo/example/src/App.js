@@ -11,7 +11,7 @@ import ReactLive2d from '../../src/index.js';
                 height={500}
                 bottom={'10px'}
                 right={'10px'}
-                ModelList={['Hiyori']}
+                ModelList={['Haru','Hiyori']}
                 TouchBody={['啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊你要干嘛','哼','坏人']}
              />
         </div>

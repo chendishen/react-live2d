@@ -37,11 +37,11 @@ export class LAppTextureManager {
   }
 
   /**
-   * 画像読み込み
+   * 图像读取
    *
-   * @param fileName 読み込む画像ファイルパス名
-   * @param usePremultiply Premult処理を有効にするか
-   * @return 画像情報、読み込み失敗時はnullを返す
+   * @param fileName 读取的图像文件路径名称
+   * @param usePremultiply 是否启用Premiult处理
+   * @return 图像信息读取失败时返回null
    */
   public createTextureFromPngFile(
     fileName: string,
@@ -58,8 +58,8 @@ export class LAppTextureManager {
         ite.ptr().fileName == fileName &&
         ite.ptr().usePremultply == usePremultiply
       ) {
-        // 2回目以降はキャッシュが使用される(待ち時間なし)
-        // WebKitでは同じImageのonloadを再度呼ぶには再インスタンスが必要
+        // 第二次以后使用缓存（无等待时间）
+        // 在WebKit中，要再次调用相同Image的onload，需要再次实例
         // 詳細：https://stackoverflow.com/a/5024181
         ite.ptr().img = new Image();
         ite.ptr().img.onload = (): void => callback(ite.ptr());

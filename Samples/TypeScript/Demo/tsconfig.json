@@ -3,7 +3,7 @@
     "target": "es5",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "experimentalDecorators": false,
     "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "removeComments": true,
