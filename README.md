@@ -170,6 +170,7 @@ api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/
 | ModelList | 模型列表 | Array<String> | ['Hiyori'] |
 | TouchBody | 点击身体时聊天框随机出现数组的值,该值当模型未存入身体触摸事件时无效 | Array<String> | ['啊呀，你的手在摸哪里嘛~','哼，坏人'] |
 | TouchHead | 点击头部时聊天框随机出现数组的值,该值当模型未存入头部触摸事件时无效 | Array<String> | ['讨厌,不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
+| TouchDefault | 点击盒子任意位置时聊天框随机出现数组的值,该值所有模型均有效且优先级最低 | Array<String> | ['今天又是开心的一天呢~','真是元气满满呀'] |
 | color | 聊天框背景颜色 | String | '#C8E6FE' |
 | PathFull | 当SSR框架时，必须传入此参数，用以额外指定绝对路径资源域名地址 | String | '' |
 | MobileShow | 是否在移动设备展示看板娘 | Boolean | false |

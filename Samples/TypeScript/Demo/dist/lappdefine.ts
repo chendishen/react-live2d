@@ -43,6 +43,7 @@ export const PowerImageName = 'CloseNormal.png';
 export let ModelDir: string[] = ['Hiyori', 'Haru', 'Rice'];
 
 // 外部定義ファイル（json）と合わせる
+export const MotionGroupDefault = ''; // 默认的其他模型
 export const MotionGroupIdle = 'Idle'; // アイドリング
 export const MotionGroupTapBody = 'TapBody'; // 体をタップしたとき
 
@@ -53,6 +54,7 @@ export const HitAreaNameBody = 'Body';
 // 对话内容
 export let HitBodyList: string[] = ['啊呀，你的手在摸哪里嘛~','哼，坏人'];
 export let HitHeadList: string[] = ['讨厌~不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'];
+export let HitDefaultList: string[] = ['今天又是开心的一天呢~','真是元气满满呀'];
 
 // モーションの優先度定数
 export const PriorityNone = 0;
@@ -84,6 +86,10 @@ export class lappdefineSet {
     // 头部点击语言
     public static setHitHead(hitHeadList:Array<string>): void {
         HitHeadList = hitHeadList.length>0 ? hitHeadList : HitHeadList
+    }
+    // 默认点击语言
+    public static setHitDefault(hitDefaultList:Array<string>): void {
+        HitDefaultList = hitDefaultList.length>0 ? hitDefaultList : HitDefaultList
     }
     // 模型绝对路径
     public static setPathFull(pathfull:string): void {

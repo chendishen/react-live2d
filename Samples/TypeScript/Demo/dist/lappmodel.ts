@@ -461,16 +461,24 @@ export class LAppModel extends CubismUserModel {
     //--------------------------------------------------------------------------
     this._model.loadParameters(); // 前回セーブされた状態をロード
     if (this._motionManager.isFinished()) {
-      // モーションの再生がない場合、待機モーションの中からランダムで再生する
-      this.startRandomMotion(
-        LAppDefine.MotionGroupIdle,
-        LAppDefine.PriorityIdle
-      );
+      // 在没有动作的运行的情况下，从待机动作中随机运行抽取，命运抽牌啦啦啦^ ^
+      let lucky = Math.floor(Math.random() * 1000 + 100);
+      if (lucky == 999) {
+        this.startRandomMotion(
+          LAppDefine.MotionGroupIdle,
+          LAppDefine.PriorityIdle
+        );
+      } else if (lucky == 888) {
+        this.startRandomMotion(
+          LAppDefine.MotionGroupDefault,
+          LAppDefine.PriorityIdle
+        );
+      }
     } else {
       motionUpdated = this._motionManager.updateMotion(
         this._model,
         deltaTimeSeconds
-      ); // モーションを更新
+      ); // 更新动作
     }
     this._model.saveParameters(); // 状態を保存
     //--------------------------------------------------------------------------
@@ -625,7 +633,7 @@ export class LAppModel extends CubismUserModel {
     const no: number = Math.floor(
       Math.random() * this._modelSetting.getMotionCount(group)
     );
-
+    
     return this.startMotion(group, no, priority, onFinishedMotionHandler);
   }
 
@@ -683,6 +691,7 @@ export class LAppModel extends CubismUserModel {
   /**
    * 当たり判定テスト
    * 指定ＩＤの頂点リストから矩形を計算し、座標をが矩形範囲内か判定する。
+   * 根据指定ID的顶点列表计算矩形，判定坐标是否在矩形范围内。
    *
    * @param hitArenaName  当たり判定をテストする対象のID
    * @param x             判定を行うX座標

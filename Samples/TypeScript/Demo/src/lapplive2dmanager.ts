@@ -131,6 +131,15 @@ export class LAppLive2DManager {
             LAppDefine.PriorityNormal,
             this._finishedMotion
           );
+      } else {
+        this._models
+          .at(i)
+          .startRandomMotion(
+            LAppDefine.MotionGroupDefault,
+            LAppDefine.PriorityNormal,
+            this._finishedMotion
+          );
+        this.talkPrint(LAppDefine.HitDefaultList[Math.floor(Math.random()*LAppDefine.HitDefaultList.length)])
       }
     }
   }
