@@ -55,7 +55,16 @@ export namespace Live2DCubismFramework {
   }
 
   function linearEvaluate(points: CubismMotionPoint[], time: number): number {
-    let t: number = (time - points[0].time) / (points[1].time - points[0].time);
+    // console.log('linearEvaluate',points)
+    // let t: number = (time - points[0].time) / (points[1].time - points[0].time);
+    let t: number;
+    if(points[0] && points[0].time != 0){
+      t = (time - points[0].time) / (points[1].time - points[0].time);
+    }else if(points[2] && points[2].time){
+      t = (time - points[1].time) / (points[2].time - points[1].time);
+    }else if(points.length>0){
+      t = (time - points[0].time) / (points[1].time - points[0].time);
+    }
 
     if (t < 0.0) {
       t = 0.0;
@@ -106,14 +115,18 @@ export namespace Live2DCubismFramework {
     let pointPosition = 0;
     for (let i: number = curve.baseSegmentIndex; i < totalSegmentCount; ++i) {
       // Get first point of next segment.
-      pointPosition =
-        motionData.segments.at(i).basePointIndex +
-        (motionData.segments.at(i).segmentType ==
-        CubismMotionSegmentType.CubismMotionSegmentType_Bezier
-          ? 3
-          : 1);
+      // 获取下个点，如果是贝赛尔曲线 则直接加上3使其流畅，否则加1
+      pointPosition = motionData.segments.at(i).basePointIndex + (motionData.segments.at(i).segmentType == CubismMotionSegmentType.CubismMotionSegmentType_Bezier ? 3 : 1);
+
+      // 部分模型点位超出最大值
+      if(pointPosition>=motionData.points._size){
+        pointPosition = motionData.points._size - 3
+      }
+
+      // console.warn('time',time)
 
       // Break if time lies within current segment.
+
       if (motionData.points.at(pointPosition).time > time) {
         target = i;
         break;
@@ -139,11 +152,11 @@ export namespace Live2DCubismFramework {
    */
   export class CubismMotion extends ACubismMotion {
     /**
-     * インスタンスを作成する
+     * 创建实例
      *
-     * @param buffer motion3.jsonが読み込まれているバッファ
-     * @param size バッファのサイズ
-     * @param onFinishedMotionHandler モーション再生終了時に呼び出されるコールバック関数
+     * @param buffer motion3.json已读取的缓冲存储器
+     * @param size 缓冲区大小
+     * @param onFinishedMotionHandler 动作再生结束时调用的回调函数
      * @return 作成されたインスタンス
      */
     public static create(
@@ -164,11 +177,11 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * モデルのパラメータの更新の実行
-     * @param model             対象のモデル
-     * @param userTimeSeconds   現在の時刻[秒]
-     * @param fadeWeight        モーションの重み
-     * @param motionQueueEntry  CubismMotionQueueManagerで管理されているモーション
+     * 执行模型参数更新
+     * @param model             对象的模型
+     * @param userTimeSeconds   当前时间[秒]
+     * @param fadeWeight        动作的重量
+     * @param motionQueueEntry  CubismMotionQueueManager管理的动作
      */
     public doUpdateParameters(
       model: CubismModel,
@@ -255,6 +268,7 @@ export namespace Live2DCubismFramework {
         ++c
       ) {
         // Evaluate curve and call handler.
+        // console.warn('evaluateCurve1,Evaluate curve and call handler.')
         value = evaluateCurve(this._motionData, c, time);
 
         if (curves.at(c).id == this._modelCurveIdEyeBlink) {
@@ -288,6 +302,7 @@ export namespace Live2DCubismFramework {
         );
 
         // Evaluate curve and apply value.
+        // console.warn('evaluateCurve2,Evaluate curve and apply value.')
         value = evaluateCurve(this._motionData, c, time);
 
         if (eyeBlinkValue != Number.MAX_VALUE) {
@@ -320,12 +335,12 @@ export namespace Live2DCubismFramework {
 
         let v: number;
 
-        // パラメータごとのフェード
+        // 各参数的淡入淡出
         if (curves.at(c).fadeInTime < 0.0 && curves.at(c).fadeOutTime < 0.0) {
-          // モーションのフェードを適用
+          // 应用动作淡入淡出
           v = sourceValue + (value - sourceValue) * fadeWeight;
         } else {
-          // パラメータに対してフェードインかフェードアウトが設定してある場合はそちらを適用
+          // 对于参数设定为淡入淡出或淡出时，适用该参数
           let fin: number;
           let fout: number;
 
@@ -356,7 +371,7 @@ export namespace Live2DCubismFramework {
 
           const paramWeight: number = this._weight * fin * fout;
 
-          // パラメータごとのフェードを適用
+          // 应用每个参数的淡入淡出
           v = sourceValue + (value - sourceValue) * paramWeight;
         }
 
@@ -374,7 +389,7 @@ export namespace Live2DCubismFramework {
               this._eyeBlinkParameterIds.at(i)
             );
 
-            // モーションでの上書きがあった時にはまばたきは適用しない
+            // 在动作覆盖时不使用眨眼
             if ((eyeBlinkFlags >> i) & 0x01) {
               continue;
             }
@@ -425,6 +440,7 @@ export namespace Live2DCubismFramework {
         }
 
         // Evaluate curve and apply value.
+        // console.warn('evaluateCurve3,Evaluate curve and apply value.')
         value = evaluateCurve(this._motionData, c, time);
 
         model.setParameterValueByIndex(parameterIndex, value);
@@ -434,7 +450,7 @@ export namespace Live2DCubismFramework {
         if (this._isLoop) {
           motionQueueEntry.setStartTime(userTimeSeconds); // 最初の状態へ
           if (this._isLoopFadeIn) {
-            // ループ内でループ用フェードインが有効の時は、フェードイン設定し直し
+            // 循环淡入时，请重新淡入淡入淡出
             motionQueueEntry.setFadeInStartTime(userTimeSeconds);
           }
         } else {
@@ -502,7 +518,7 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * パラメータに対するフェードインの時間を設定する。
+     * 设置参数的淡入时间。
      *
      * @param parameterId     パラメータID
      * @param value           フェードインにかかる時間[秒]
@@ -522,7 +538,7 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * パラメータに対するフェードアウトの時間の設定
+     * 设置参数的淡出时间
      * @param parameterId     パラメータID
      * @param value           フェードアウトにかかる時間[秒]
      */
@@ -541,7 +557,7 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * パラメータに対するフェードインの時間の取得
+     * 获取参数的淡入时间
      * @param    parameterId     パラメータID
      * @return   フェードインにかかる時間[秒]
      */
@@ -558,7 +574,7 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * パラメータに対するフェードアウトの時間を取得
+     * 获取参数的淡出时间
      *
      * @param   parameterId     パラメータID
      * @return   フェードアウトにかかる時間[秒]
@@ -614,9 +630,9 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * motion3.jsonをパースする。
+     * motion3.json清洗。
      *
-     * @param motionJson  motion3.jsonが読み込まれているバッファ
+     * @param motionJson  motion3.json读取的缓冲存储器
      * @param size        バッファのサイズ
      */
     public parse(motionJson: ArrayBuffer, size: number): void {
@@ -626,9 +642,14 @@ export namespace Live2DCubismFramework {
 
       this._motionData.duration = json.getMotionDuration();
       this._motionData.loop = json.isMotionLoop();
+      // 曲线计数
       this._motionData.curveCount = json.getMotionCurveCount();
       this._motionData.fps = json.getMotionFps();
+      // 事件计数
       this._motionData.eventCount = json.getEventCount();
+
+      // console.log('this._motionData.curveCount',this._motionData.curveCount)
+      // console.log('this._motionData.eventCount',this._motionData.eventCount)
 
       if (json.isExistMotionFadeInTime()) {
         this._fadeInSeconds =
@@ -669,6 +690,7 @@ export namespace Live2DCubismFramework {
       let totalSegmentCount = 0;
 
       // Curves
+      // console.log('this._motionData.curveCount',this._motionData.curveCount)
       for (
         let curveCount = 0;
         curveCount < this._motionData.curveCount;
@@ -899,12 +921,13 @@ export namespace Live2DCubismFramework {
           ++totalSegmentCount;
         }
       }
-
+      // console.log('json.getEventCount()',json.getEventCount())
       for (
         let userdatacount = 0;
         userdatacount < json.getEventCount();
         ++userdatacount
       ) {
+        // console.log('userdatacount < json.getEventCount()',userdatacount,json.getEventCount())
         this._motionData.events.at(userdatacount).fireTime = json.getEventTime(
           userdatacount
         );
@@ -954,7 +977,8 @@ export namespace Live2DCubismFramework {
     public _isLoopFadeIn: boolean; // ループ時にフェードインが有効かどうかのフラグ。初期値では有効。
     public _lastWeight: number; // 最後に設定された重み
 
-    public _motionData: CubismMotionData; // 実際のモーションデータ本体
+    public _motionData: CubismMotionData; // 实际的动作数据主体
+
 
     public _eyeBlinkParameterIds: csmVector<CubismIdHandle>; // 自動まばたきを適用するパラメータIDハンドルのリスト。  モデル（モデルセッティング）とパラメータを対応付ける。
     public _lipSyncParameterIds: csmVector<CubismIdHandle>; // リップシンクを適用するパラメータIDハンドルのリスト。  モデル（モデルセッティング）とパラメータを対応付ける。

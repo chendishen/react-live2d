@@ -214,6 +214,6 @@ export namespace Live2DCubismFramework {
     _stateWeight: number; // 重みの状態
     _lastEventCheckSeconds: number; // 最終のMotion側のチェックした時間
 
-    _motionQueueEntryHandle: CubismMotionQueueEntryHandle; // インスタンスごとに一意の値を持つ識別番号
+    _motionQueueEntryHandle: CubismMotionQueueEntryHandle; // 每个实例具有唯一值的标识号
   }
 }

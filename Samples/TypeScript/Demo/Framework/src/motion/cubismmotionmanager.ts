@@ -54,12 +54,12 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * 優先度を設定してモーションを開始する。
+     * 设定优先级后开始动作。
      *
-     * @param motion          モーション
+     * @param motion          动作
      * @param autoDelete      再生が狩猟したモーションのインスタンスを削除するならtrue
      * @param priority        優先度
-     * @return                開始したモーションの識別番号を返す。個別のモーションが終了したか否かを判定するIsFinished()の引数で使用する。開始できない時は「-1」
+     * @return                返回开始的动作的识别号码。用于判定个别动作是否结束的IsFinished（）参数。无法开始时为“-1”
      */
     public startMotionPriority(
       motion: ACubismMotion,

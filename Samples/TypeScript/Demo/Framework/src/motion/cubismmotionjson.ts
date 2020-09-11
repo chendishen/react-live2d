@@ -81,8 +81,8 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * モーションカーブの個数の取得
-     * @return モーションカーブの個数
+     * 获取动作曲线的个数
+     * @return 动作曲线的个数
      */
     public getMotionCurveCount(): number {
       return this._json
@@ -301,7 +301,7 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * イベントの個数の取得
+     * 获取事件个数
      * @return イベントの個数
      */
     public getEventCount(): number {

@@ -54,14 +54,14 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * 指定したモーションの開始
+     * 指定动作的开始
      *
-     * 指定したモーションを開始する。同じタイプのモーションが既にある場合は、既存のモーションに終了フラグを立て、フェードアウトを開始させる。
+     * 开始指定的动作。如果已经有相同类型的动作，则对现有动作立结束标志，开始淡出。
      *
-     * @param   motion          開始するモーション
-     * @param   autoDelete      再生が終了したモーションのインスタンスを削除するなら true
-     * @param   userTimeSeconds デルタ時間の積算値[秒]
-     * @return                      開始したモーションの識別番号を返す。個別のモーションが終了したか否かを判定するIsFinished()の引数で使用する。開始できない時は「-1」
+     * @param   motion              开始的动作
+     * @param   autoDelete          删除播放结束的动作实例 true
+     * @param   userTimeSeconds     增量时间的累计值[秒]
+     * @return                      返回开始的动作的识别号码。用于判定个别动作是否结束的IsFinished（）参数。无法开始时为“-1”
      */
     public startMotion(
       motion: ACubismMotion,
@@ -73,8 +73,8 @@ export namespace Live2DCubismFramework {
       }
 
       let motionQueueEntry: CubismMotionQueueEntry = null;
-
-      // 既にモーションがあれば終了フラグを立てる
+      
+      //如果已经有动作的话就立结束标志
       for (let i = 0; i < this._motions.getSize(); ++i) {
         motionQueueEntry = this._motions.at(i);
         if (motionQueueEntry == null) {
@@ -84,14 +84,17 @@ export namespace Live2DCubismFramework {
         motionQueueEntry.startFadeout(
           motionQueueEntry._motion.getFadeOutTime(),
           userTimeSeconds
-        ); // フェードアウトを開始し終了する
+        ); // 开始淡出并退出
       }
 
-      motionQueueEntry = new CubismMotionQueueEntry(); // 終了時に破棄する
+      motionQueueEntry = new CubismMotionQueueEntry(); // 退出时丢弃
       motionQueueEntry._autoDelete = autoDelete;
       motionQueueEntry._motion = motion;
-
-      this._motions.pushBack(motionQueueEntry);
+      // console.log('eventCount',motion['_motionData'])
+      // 添加超频动作拦截器，据测试，curveCount超过100的模型会导致动作异常,待修复 2020.9.11
+      if(motion['_motionData']['curveCount']<100){
+        this._motions.pushBack(motionQueueEntry);
+      }
 
       return motionQueueEntry._motionQueueEntryHandle;
     }

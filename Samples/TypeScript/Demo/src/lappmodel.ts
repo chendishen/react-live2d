@@ -461,6 +461,10 @@ export class LAppModel extends CubismUserModel {
     //--------------------------------------------------------------------------
     this._model.loadParameters(); // 前回セーブされた状態をロード
     if (this._motionManager.isFinished()) {
+      this.startRandomMotion(
+        LAppDefine.MotionGroupIdle,
+        LAppDefine.PriorityIdle
+      );
       // 在没有动作的运行的情况下，从待机动作中随机运行抽取，命运抽牌啦啦啦^ ^
       let lucky = Math.floor(Math.random() * 1000 + 100);
       if (lucky == 999) {
@@ -633,7 +637,6 @@ export class LAppModel extends CubismUserModel {
     const no: number = Math.floor(
       Math.random() * this._modelSetting.getMotionCount(group)
     );
-    
     return this.startMotion(group, no, priority, onFinishedMotionHandler);
   }
 
