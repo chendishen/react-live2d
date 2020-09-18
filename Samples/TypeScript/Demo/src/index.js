@@ -132,6 +132,18 @@ function ReactLive2d(props) {
                 width={props.width ? props.width : '300'}
                 height={props.height ? props.height : '500'}
                 id="live2d-container">
+                <div id="live2d-hidden"
+                    style={{
+                        width:'100%',
+                        height:'100%',
+                        position:'absolute',
+                        top:'0',
+                        left:'0',
+                        zIndex:'2'
+                    }}
+                >
+
+                </div>
                 <div id="live2d-print"
                     style={printStyle}
                 ></div>

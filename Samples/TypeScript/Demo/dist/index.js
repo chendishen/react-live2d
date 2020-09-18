@@ -164,6 +164,16 @@ function ReactLive2d(props) {
     height: props.height ? props.height : '500',
     id: "live2d-container"
   }, /*#__PURE__*/_react["default"].createElement("div", {
+    id: "live2d-hidden",
+    style: {
+      width: '100%',
+      height: '100%',
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      zIndex: '2'
+    }
+  }), /*#__PURE__*/_react["default"].createElement("div", {
     id: "live2d-print",
     style: printStyle
   }), /*#__PURE__*/_react["default"].createElement("canvas", {

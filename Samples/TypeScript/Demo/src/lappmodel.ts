@@ -344,6 +344,7 @@ export class LAppModel extends CubismUserModel {
 
     // Motion
     const loadCubismMotion = (): void => {
+      document.getElementById('live2d-hidden').style.display='block'
       this._state = LoadStep.WaitLoadMotion;
       this._model.saveParameters();
       this._allMotionCount = 0;
@@ -765,18 +766,27 @@ export class LAppModel extends CubismUserModel {
           this._motions.setValue(name, tmpMotion);
 
           this._motionCount++;
-          if (this._motionCount >= this._allMotionCount && this._motionManager) {
+          // console.log('this._motionCount',this._motionCount)
+          // console.log('this._allMotionCount',this._allMotionCount)
+          if (this._motionCount >= this._allMotionCount) {
             this._state = LoadStep.LoadTexture;
 
             // 全てのモーションを停止する
-            this._motionManager.stopAllMotions();
+            document.getElementById('live2d-hidden').style.display='none'
+            if(this._motionManager){
+              this._motionManager.stopAllMotions();
+              this.createRenderer();
+              this.setupTextures();
+              this.getRenderer().startUp(gl);
+            }
 
             this._updating = false;
             this._initialized = true;
 
-            this.createRenderer();
-            this.setupTextures();
-            this.getRenderer().startUp(gl);
+            // this.createRenderer();
+            // this.setupTextures();
+            // this.getRenderer().startUp(gl);
+            document.getElementById('live2d').style.visibility='visible'
           }
         });
     }
