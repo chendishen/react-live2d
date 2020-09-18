@@ -765,7 +765,7 @@ export class LAppModel extends CubismUserModel {
           this._motions.setValue(name, tmpMotion);
 
           this._motionCount++;
-          if (this._motionCount >= this._allMotionCount) {
+          if (this._motionCount >= this._allMotionCount && this._motionManager) {
             this._state = LoadStep.LoadTexture;
 
             // 全てのモーションを停止する
