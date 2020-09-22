@@ -122,7 +122,6 @@ const ReactLive2d = dynamic(import('react-live2d'), {
 
 export default function Home() (
   <>
-    <DynamicComponentWithNoSSR></DynamicComponentWithNoSSR>
     <ReactLive2d
       width = { 300}
       height = { 500}
