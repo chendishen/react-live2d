@@ -84,38 +84,37 @@ const App = () => (
 ## 🔨 Usage for SSR
 #####  如：create-next-app
 
-项目根目录创建components文件夹，并在其中创建Header.js
+创建文件`./pages/_document.js`
 ```jsx
-import React from 'react'
-import Head from 'next/head'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 
-const Header = () => (
-  <div className="header">
-    <Head>
-    <title></title>
-    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-    <script>
-        {
-        `             
-    with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://publicjs.supmiao.com/live2dcubismcore.min.js'];
-    `
-        }
-    
-    </script>
-    </Head>
- </div>
-)
+class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+    return { ...initialProps }
+  }
 
-export default Header
+  render() {
+    return (
+      <Html>
+        {/* <Head /> */}
+        <Head>
+          <script src = "http://publicjs.supmiao.com/live2dcubismcore.min.js"></script>
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
+  }
+}
+
+export default MyDocument
 ```
 
 ```jsx
 import dynamic from 'next/dynamic'
-
-
-const DynamicComponentWithNoSSR = dynamic(import('../components/Header'), {
-  ssr: false
-})
 
 const ReactLive2d = dynamic(import('react-live2d'), {
   ssr: false
@@ -123,7 +122,6 @@ const ReactLive2d = dynamic(import('react-live2d'), {
 
 export default function Home() (
   <>
-    <DynamicComponentWithNoSSR></DynamicComponentWithNoSSR>
     <ReactLive2d
       width = { 300}
       height = { 500}
