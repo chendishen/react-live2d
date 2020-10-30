@@ -151,13 +151,15 @@ function ReactLive2d(props) {
         return;
       }
 
-      _lappdelegate.LAppDelegate.getInstance().run();
+      _lappdelegate.LAppDelegate.getInstance().run(); // window.onbeforeunload = () => LAppDelegate.releaseInstance();
 
-      window.onbeforeunload = function () {
-        return _lappdelegate.LAppDelegate.releaseInstance();
-      };
     }
   }, []);
+  (0, _react.useEffect)(function () {
+    if (props.release == true) {
+      _lappdelegate.LAppDelegate.releaseInstance();
+    }
+  }, [props.release]);
   return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("div", {
     style: containerStyle,
     width: props.width ? props.width : '300',

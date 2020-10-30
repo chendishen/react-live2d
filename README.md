@@ -172,7 +172,7 @@ api 文档 （待完善，如有需要功能欢迎提[issue](https://github.com/
 | TouchHead | 点击头部时聊天框随机出现数组的值,该值当模型未存入头部触摸事件时无效 | Array<String> | ['讨厌,不要掐人家的脸嘛~','希望明天也能感受到你的触摸呢'] |
 | TouchDefault | 点击盒子任意位置时聊天框随机出现数组的值,该值所有模型均有效且优先级最低 | Array<String> | ['今天又是开心的一天呢~','真是元气满满呀'] |
 | color | 聊天框背景颜色 | String | '#C8E6FE' |
-| PathFull | 当SSR框架时，必须传入此参数，用以额外指定绝对路径资源域名地址 | String | '' |
+| PathFull | 当SSR框架时，必须传入此参数，用以额外指定绝对路径资源域名地址；当SPA框架时，目录较深的页面也可以根据自己需要，设置该参数指向正确的路径，如'../Resources/' | String | '' |
 | MobileShow | 是否在移动设备展示看板娘 | Boolean | false |
 | menuList | 启用的功能菜单列表，该值传空数组时不启用菜单，可用参数为：Mtab | Array<String> | ['Mtab'] |
 

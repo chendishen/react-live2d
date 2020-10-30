@@ -120,10 +120,16 @@ function ReactLive2d(props) {
             LAppDelegate.getInstance().run();
 
 
-            window.onbeforeunload = () => LAppDelegate.releaseInstance();
+            // window.onbeforeunload = () => LAppDelegate.releaseInstance();
         }
 
     }, []);
+
+    useEffect(() =>{
+        if(props.release==true){
+            LAppDelegate.releaseInstance();
+        }
+    }, [props.release])
 
     return (
         <div>

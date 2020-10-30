@@ -12,7 +12,7 @@ module.exports = {
   // 生产
   entry: './src/index.js',
   // 测试
-  // entry: './example/src/App.js',
+  // entry: './example/src/index.js',
   node: {
     fs: 'empty'
   },

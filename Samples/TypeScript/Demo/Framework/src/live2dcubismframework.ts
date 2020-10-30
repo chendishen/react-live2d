@@ -133,8 +133,8 @@ export namespace Live2DCubismFramework {
     }
 
     /**
-     * Cubism Framework内のリソースを初期化してモデルを表示可能な状態にします。<br>
-     *     再度Initialize()するには先にDispose()を実行する必要があります。
+     *  将Cubism Framework内的资源初始化，使模型处于可显示状态。
+     *  要再次Initialize（），必须先执行Dispose（）。
      */
     public static initialize(): void {
       CSM_ASSERT(s_isStarted);

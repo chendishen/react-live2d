@@ -87,7 +87,7 @@ export class LAppModel extends CubismUserModel {
   public loadAssets(dir: string, fileName: string): void {
     console.log('资源路径',dir)
     this._modelHomeDir = dir;
-    fetch(`${this._modelHomeDir}/${fileName}`)
+    fetch(`${this._modelHomeDir}${fileName}`)
       .then(response => response.arrayBuffer())
       .then(arrayBuffer => {
         const setting: ICubismModelSetting = new CubismModelSettingJson(
@@ -119,7 +119,7 @@ export class LAppModel extends CubismUserModel {
     if (this._modelSetting.getModelFileName() != '') {
       const modelFileName = this._modelSetting.getModelFileName();
 
-      fetch(`${this._modelHomeDir}/${modelFileName}`)
+      fetch(`${this._modelHomeDir}${modelFileName}`)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
           this.loadModel(arrayBuffer);
@@ -145,7 +145,7 @@ export class LAppModel extends CubismUserModel {
             i
           );
 
-          fetch(`${this._modelHomeDir}/${expressionFileName}`)
+          fetch(`${this._modelHomeDir}${expressionFileName}`)
             .then(response => response.arrayBuffer())
             .then(arrayBuffer => {
               const motion: ACubismMotion = this.loadExpression(
@@ -187,7 +187,7 @@ export class LAppModel extends CubismUserModel {
       if (this._modelSetting.getPhysicsFileName() != '') {
         const physicsFileName = this._modelSetting.getPhysicsFileName();
 
-        fetch(`${this._modelHomeDir}/${physicsFileName}`)
+        fetch(`${this._modelHomeDir}${physicsFileName}`)
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => {
             this.loadPhysics(arrayBuffer, arrayBuffer.byteLength);
@@ -211,7 +211,7 @@ export class LAppModel extends CubismUserModel {
       if (this._modelSetting.getPoseFileName() != '') {
         const poseFileName = this._modelSetting.getPoseFileName();
 
-        fetch(`${this._modelHomeDir}/${poseFileName}`)
+        fetch(`${this._modelHomeDir}${poseFileName}`)
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => {
             this.loadPose(arrayBuffer, arrayBuffer.byteLength);
@@ -282,7 +282,7 @@ export class LAppModel extends CubismUserModel {
       if (this._modelSetting.getUserDataFile() != '') {
         const userDataFile = this._modelSetting.getUserDataFile();
 
-        fetch(`${this._modelHomeDir}/${userDataFile}`)
+        fetch(`${this._modelHomeDir}${userDataFile}`)
           .then(response => response.arrayBuffer())
           .then(arrayBuffer => {
             this.loadUserData(arrayBuffer, arrayBuffer.byteLength);
@@ -577,7 +577,7 @@ export class LAppModel extends CubismUserModel {
     let autoDelete = false;
 
     if (motion == null) {
-      fetch(`${this._modelHomeDir}/${motionFileName}`)
+      fetch(`${this._modelHomeDir}${motionFileName}`)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
           motion = this.loadMotion(
@@ -739,7 +739,7 @@ export class LAppModel extends CubismUserModel {
         );
       }
 
-      fetch(`${this._modelHomeDir}/${motionFileName}`)
+      fetch(`${this._modelHomeDir}${motionFileName}`)
         .then(response => response.arrayBuffer())
         .then(arrayBuffer => {
           const tmpMotion: CubismMotion = this.loadMotion(

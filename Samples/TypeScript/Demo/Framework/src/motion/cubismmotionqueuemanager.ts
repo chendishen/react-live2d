@@ -92,7 +92,7 @@ export namespace Live2DCubismFramework {
       motionQueueEntry._motion = motion;
       // console.log('eventCount',motion['_motionData'])
       // 添加超频动作拦截器，据测试，curveCount超过100的模型会导致动作异常,待修复 2020.9.11
-      if(motion['_motionData']['curveCount']<100){
+      if(motion?.['_motionData']?.['curveCount']<100){
         this._motions.pushBack(motionQueueEntry);
       }
 

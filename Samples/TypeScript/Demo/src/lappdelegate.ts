@@ -44,7 +44,7 @@ export class LAppDelegate {
    * クラスのインスタンス（シングルトン）を解放する。
    */
   public static releaseInstance(): void {
-    console.log("releaseInstance")
+    console.log("释放实例")
     if (s_instance != null) {
       s_instance.release();
     }
@@ -75,12 +75,15 @@ export class LAppDelegate {
 
       }
 
-      //这里id的值与上方的 cavans 变量保持一致
-      let rect = document.getElementById("live2d").getBoundingClientRect();
-      let posX: number = e.clientX - rect.left;
-      let posY: number = e.clientY - rect.top;
-      // console.log("onMouseMoved: gate文件中posY值为： 【"+posY+"】  canvas的top距离为："+rect.top);
-      LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
+      // 如果不存在live2d,不进行操作
+      if(document.getElementById("live2d")){
+        //这里id的值与上方的 cavans 变量保持一致
+        let rect = document.getElementById("live2d").getBoundingClientRect();
+        let posX: number = e.clientX - rect.left;
+        let posY: number = e.clientY - rect.top;
+        // console.log("onMouseMoved: gate文件中posY值为： 【"+posY+"】  canvas的top距离为："+rect.top);
+        LAppDelegate.getInstance()._view.onTouchesMoved(posX, posY);
+      }
 
     }, false);
 
